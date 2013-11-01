@@ -225,6 +225,7 @@ module_param(macaddr, charp, S_IRUGO);
 
 static int nompc = 0;
 module_param(nompc, int, 0);
+MODULE_LICENSE("Mixed/Proprietary");
 
 #ifdef quote_str
 #undef quote_str
@@ -910,7 +911,11 @@ wl_remove(struct pci_dev *pdev)
 	pci_set_drvdata(pdev, NULL);
 }
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 8, 0)
 static struct pci_driver wl_pci_driver = {
+#else
+static struct pci_driver wl_pci_driver __refdata = {
+#endif
 	name:		"wl",
 	probe:		wl_pci_probe,
 	suspend:	wl_suspend,
