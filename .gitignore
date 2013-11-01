@@ -1,0 +1,11 @@
+*~
+*tmp*
+*.o
+*.cmd
+*.patch
+*.ko
+wl.mod.*
+Module.symvers
+modules.order
+log
+
